@@ -1,0 +1,1060 @@
+$color-primary-light:#7bd470;
+$color-primary-dark:#2ab585;
+$color-light-gray:#f7f7f7;
+$gutter-width:4rem;
+$color-black:#000;
+$color-white:#fff;
+$color-primary:#55c57a; 
+$color-secondary-light:#ffb900;
+$color-secondary-dark:#ff7730;
+$color-tertiary-light:#2998ff;
+$color-tertiary-dark:#5643fa;
+
+@keyframes heading-animation{
+    0%{
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    50%{
+        transform: translateX(20px);
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes sub-heading-animation{
+    0%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    50%{
+        transform: translateX(-20px);
+    }
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes btn-animation{
+    0%{
+        transform:translateY(80px);
+        opacity:0;
+    }
+    100%{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+@mixin clearfix {
+    &::after{
+        content:"";
+        display:table;
+        clear:both;
+    }
+}
+@mixin card-side-front($color1,$color2,$img){
+    background-image:linear-gradient(to bottom right , rgba($color1,0.6), rgba($color2,0.6)) , url($img);
+}
+@mixin card-side-back-gradient($color1,$color2){
+    background-image:linear-gradient(to bottom right , $color1, $color2);
+}
+.btn-animation{
+    animation-name: animButton;
+    animation-delay: 1.5s;
+    animation-duration: 1s;
+    animation-fill-mode:backwards;
+}
+
+html{
+    font-size:62.5%;
+}
+*,*::before,*::after{ /*because of adding box size borderbox property any extra paading and margin will not be affected*/ 
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Lato', Serif;
+}
+.btn{ 
+        &:link{ 
+        animation-name: btn-animation;
+        display:inline-block;
+        padding:15px 40px;
+        border-radius:100px;
+        text-decoration:none;
+        text-transform: uppercase;
+        transition: all 1s;
+        position:relative;
+         }
+         &:hover{
+            transform:translateY(-3px);
+            box-shadow:0 10px 10px rgba(0, 0, 0, 0.6);
+            &::after{
+                opacity:0;
+                transform:scaleX(1.4) scaleY(1.6);
+            }
+        }
+        &::after{  //will take width of its immediate parent ie buttom
+            content:" ";
+            display:inline-block;
+            height:100%;
+            width:100%;
+            position:absolute;
+            border-radius:100px;
+            top:0;
+            left:0;
+            padding:2rem;
+            z-index: -1; //
+            transition: all 0.6s;                
+
+        }
+&-white{
+    background-color:white;
+    color:#929292;
+    &::after{
+        background-color:#fff;
+    }
+}}
+.para{
+    font-size: 1.6rem;
+    font-weight:400;
+    line-height: 26px;
+}
+.link-green{
+    color:$color-primary-dark;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary-dark;
+    padding:0 0 0.6rem 0;
+}
+.u-text-center{
+    text-align: center;
+}
+.heading-secondary{
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background-image: linear-gradient(to right, $color-primary-light,$color-primary-dark );
+    display:inline-block;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color: transparent;
+    transition:transform 1s ease-in-out;
+    margin-bottom:7rem;
+    &:hover{
+        transform: scale(1.2);
+        transform:skewX(20deg) skewY(-7deg)
+        ;
+    }
+}
+.heading-third{
+    font-size:1.5rem;
+    font-weight:600;
+    text-transform:uppercase;
+    margin-bottom:2rem;
+}
+body{
+    font-family: 'Lato', sans-serif;
+    font-size:1.6rem;
+    font-weight:700;
+    color:#777;
+    padding:3rem;
+
+    .header{
+        height:95vh;
+        clip-path: polygon(0 0, 100vw 0,100vw 80vh,0 95vh);
+        background-image:linear-gradient(to right bottom, rgba($color-primary-light,0.8),rgba($color-primary-dark,0.8)), url("../images/hero.jpg");
+        background-size:cover;
+        position:relative;
+        background-position:top;
+        .logo-box{
+            position:absolute;
+            top:2.5rem;
+            left:3rem;
+            .logo{
+                height:4rem;
+            }
+        }
+        .header-box{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+
+            .header-primary{
+                color: white;
+                text-transform: uppercase;
+                
+                
+                .header-primary-main{
+                    display:block;
+                    font-size:6rem;
+                    font-weight:400;
+                    letter-spacing: 3rem;
+                    animation-name:heading-animation;   
+                    animation-timing-function: ease-out;
+                    animation-duration: 2s;  
+                }
+                .header-primary-sub{
+                    display:block;
+                    font-size:1.6rem;
+                    font-weight:900;
+                    letter-spacing: 1.78rem;
+                    margin: 3.7rem 0 6.8rem 0;
+                    animation-name:sub-heading-animation;
+                    animation-timing-function: ease-out;
+                    animation-duration: 2s;
+                }
+            }
+        }
+    }
+.section-about{
+        background-color:$color-light-gray; 
+        padding:20rem 0 40rem 0;
+        margin-top: -15vh;
+        
+        .para :not(:last-child) {
+                    margin-bottom: 2.5rem;
+                }
+        .heading-third~p{
+            margin: 0 0 5rem 0;
+        }  
+    }
+    
+}
+.composition{
+    position:relative;
+    &-photo{
+       width:55%;
+       border-radius:2px;
+       box-shadow:0 0 2.5rem rgba($color-black,0.6);
+       position:absolute;
+       transition: all 0.4s;
+       outline-offset:2rem;
+       &-1{
+           top:0;
+           left:0;
+       }
+       &-2{
+           top:4rem;
+           right:0;
+       }
+       &-3{
+           top:11.5rem;
+           left:11rem;
+       }
+       &:hover{
+           transform:scale(1.1) translateY(1rem);
+           z-index:10;
+           outline:1.5rem solid $color-primary;
+           transform:scale(1);
+           
+      }
+    }
+    &:hover &-photo:not(:hover) {
+        transform:scale(0.9);
+    }
+}
+.section-features{
+    padding:20rem 0;
+    margin: -15rem 0;
+    background: linear-gradient(to bottom right ,rgba($color-primary-light, 0.8),rgba($color-primary-dark,0.8)), url("../images/nat-4.jpg");
+    background-size:cover;
+    background-position:top;
+    transform: skew(0,-7deg);
+    .skewed-row{  // to make row linear .
+         transform:skew(0,7deg)   
+    }
+
+    .features-box{
+        padding:4rem 3rem ;
+        background-color: rgba($color-white,0.7);
+        transition:transform 0.3s;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+        &:hover{
+            transform:translateY(-10px);
+        }
+        .features-icon{
+            font-size:6rem;
+            background-image: linear-gradient(to right ,$color-primary-light ,$color-primary-dark) ;
+            -webkit-background-clip:text;
+            background-clip:text;
+            color: transparent;
+            display:inline-block;
+            margin-bottom:2rem;          
+        }
+    }
+
+}
+.section-tours{
+    background-color:$color-light-gray;
+    padding: 30rem 0 15rem 0;
+}
+.card{
+    perspective:150rem;
+    -moz-perspective:150rem;
+    position: relative;
+    height:50rem;
+    &:hover .card-side-front{
+        transform:rotateY(180deg);
+    }
+    &:hover .card-side-back{
+        transform:rotateY(0);
+    }
+    .card-side{
+        background-color: $color-white;
+        height:50rem;
+        box-shadow: 1px 10px 30px rgba($color-black, 0.4);
+        transition: all 2s;
+        backface-visibility:hidden;
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+    }
+    
+    .card-side-front{
+        .card-side-front__img{
+            height:45%;
+            clip-path: polygon(0 0, 100% 0,100% 80%,0 95%);
+            background-size:cover;
+        }
+        .card-side-front-1{
+            @include card-side-front($color-secondary-dark, $color-secondary-light, "../images/nat-5.jpg")
+        }
+        .card-side-front-2{
+            @include card-side-front($color-primary-dark, $color-primary-light, "../images/nat-6.jpg")
+        }
+        .card-side-front-3{
+            @include card-side-front($color-tertiary-light, $color-tertiary-light, "../images/nat-7.jpg")
+        }
+            .heading-fourth{
+                font-size:2.7rem;
+                color:white;
+                text-align: right;
+                font-weight:300;
+                text-transform: uppercase;
+                width:45%;
+                position:absolute;
+                top: 22%;
+                right: 5%;
+                line-height: 4.4rem;
+                &--1 span{
+                    @include card-side-back-gradient(rgba($color-secondary-light,0.8),rgba($color-secondary-dark,0.8));
+                }
+                &--2 span{
+                    @include card-side-back-gradient($color-primary-light,$color-primary-dark);
+                }
+                &--3 span{
+                    @include card-side-back-gradient($color-tertiary-light,$color-tertiary-dark);
+                }
+                span{
+                    color:$color-white;
+                   // display: inline-block;
+                    padding:1rem 1.4rem;
+                    //background:linear-gradient(to top, rgba($color-secondary-dark,0.8),rgba($color-secondary-light,0.8));
+                }
+            }
+            .card-side-front__features{
+                margin: 0 auto;
+                ul{
+                    list-style:none;
+                    li{ 
+                        margin: 1.5rem 0 1.5rem 5.1rem;
+                        font-weight: 300;               
+                        padding-bottom: 1.5rem; 
+                        width: 70%;
+                        &:not(:last-child){
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.1);    
+                            
+                        }       
+                       
+                    }
+                }
+            }   
+        }
+    .card-side-back{
+        color:white;
+        transform:rotateY(-180deg);
+        position:relative;
+
+        .tours-prize{
+            text-transform: uppercase;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            .heading-fifth{
+                font-size: 6rem;
+                font-weight:100;
+                margin:2rem 0 6rem 0;
+            }
+        }
+    }
+    .card-side-back-1{
+        @include card-side-back-gradient($color-secondary-dark,$color-secondary-light);
+    }
+    .card-side-back-2{
+        @include card-side-back-gradient($color-primary-dark,$color-primary-light);
+    }
+    .card-side-back-3{
+        @include card-side-back-gradient($color-tertiary-dark,$color-tertiary-light);
+    }
+}
+.btn-green{
+    color:white;
+    background-color: $color-primary;
+    font-weight: 400;
+}
+.section-stories{
+    padding: 20rem 0;
+    position: relative;
+}
+.bg-video{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: -1;
+    &__content{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+    }
+}
+    .story{
+        width:75%;    
+        margin: 0 auto 8rem auto;
+        padding: 6rem;
+        background-color: rgba($color-white,0.6);
+        box-shadow: 0 0 10px rgba($color-black, 0.4);
+        transform: skewX(-12deg);
+        &>*{
+            transform: skewX(12deg);
+        }
+       &__shape{
+            width:15rem;
+            height: 15rem;
+            float:left;
+            clip-path: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            transform: translateX(-3rem) skewX(12deg);
+            position: relative;
+        }
+        &__image{
+            height: 100%;
+            transform: translateX(-4rem) scale(1.2);
+            transition: all 1s;
+        }
+        &__caption{
+            position:absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-20%);
+            color: $color-white;
+            text-transform: uppercase;
+            font-size: 1.7rem;
+            text-align: center;
+            font-weight: 400;
+            opacity: 0;
+            transition: all 1s;
+        }
+        &:hover &__caption{
+            opacity: 1;
+            transform: translate(-50%,-50%);
+        }
+        &:hover &__image{
+            transform: translate(-4rem) scale(1);
+            filter: blur(3px) brightness(80%);
+        }
+        
+    }
+.section-bookings{
+    padding: 20rem 0;
+    background-image: linear-gradient(to right bottom , ($color-primary-light), ($color-primary-dark));
+    .booking-form{
+        height:50rem;
+        background-image: linear-gradient(106deg ,rgba($color-white,0.8) 50%, transparent 50%) , url("../images/nat-10.jpg");
+        background-size: cover;
+        .book{
+            width: 45%;
+            padding: 6rem;
+            h2{
+                margin-bottom: 5rem;
+            }
+            .form__group{
+            &:last-child a{
+                margin-top: 5rem;
+            }
+                .form__input{
+                    width: 90%;
+                    font-family: inherit;
+                    color:inherit;
+                    background-color: rgba($color-white,0.2);
+                    border: none;
+                    border-bottom: 3px solid transparent;
+                    font-size: 1.5rem;
+                    padding: 1.5rem 2rem;
+                    margin-top: 1.5rem;
+                    border-radius: 2px;
+                    display: block;
+                    transition: all 1s;
+                    &:focus{
+                        outline: none;
+                        box-shadow: 0px 1rem 2rem rgba($color-black, 0.1); 
+                        border-bottom: 3px solid $color-primary;
+                    }
+                    &:focus:invalid{
+                        border-bottom: 3px solid $color-secondary-dark;
+                    }
+                }
+                .form__label,.form__input::placeholder{
+                    font-size:1.2rem;
+                    font-weight: 700;
+                    margin: 0.7rem 0 0 2rem;
+                    display: block;
+                    transition: all 1s;
+                }
+                .form__input:placeholder-shown + .form__label{
+                    transform: translateY(-4rem);
+                    opacity: 0;
+                }
+                .form__radio-group{
+                    display: inline-block;
+                    width: 45%;
+                    .form__radio-input{
+                        display: none;
+                    }
+                    .form__radio-label{
+                        font-size: 1.6rem;
+                        cursor: pointer;
+                        .form__radio-button{
+                            height: 3rem;
+                            width: 3rem;
+                            border-radius: 100px;
+                            vertical-align: -45%;
+                            margin-right: 1rem;
+                            // background-color: $color-primary;
+                            display: inline-block;
+                            border: 5px solid $color-primary;
+                            position: relative;
+                            &::after{
+                                content: "";
+                                display: inline-block;
+                                position: absolute;
+                                height: 1rem;
+                                width: 1rem;
+                                border-radius: 100px;
+                                background-color: $color-primary;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%,-50%);
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+                .form__radio-input:checked ~ .form__radio-label .form__radio-button::after{
+                    opacity: 1;
+                }  
+            }  
+        }
+    }
+}
+.section-footer{
+    background-color: #333;
+    padding: 10rem 2.5rem 3.5rem;
+    .natours{
+    margin: 0 0 9rem 0;
+        img{
+            height:12rem ;
+        }
+    }
+    .footer-info{
+            overflow: hidden;
+            padding: 0 6rem 3.5rem;
+        }
+        .footer-links{
+            text-transform: uppercase;
+            float:left;
+            ul{
+                list-style: none;
+                li{
+                    display: inline;
+                    &:not(:first-child){
+                        margin: 0 0 0 1.6rem;
+                    }     
+                    a{
+                        color: $color-light-gray;
+                        text-decoration: none;
+                        padding: 0.3rem 0;
+                        display: inline-block;
+                        transition: all 0.3s;                      
+                        &:hover{
+                            color: $color-primary-light;
+                            transform: scale(1.2) rotate(8deg);
+                            box-shadow: 0px 10px 25px #00000096
+                        }
+                    }
+                }
+            }
+        }
+        .myinfo{
+            width: 44.9rem;
+            float: right;
+            span{
+                text-transform: uppercase;
+                padding: 0.3rem 0;
+                display: inline-block;
+                transition: all 0.3s;                      
+                &:hover{
+                    color: $color-primary-light;
+                    transform: scale(1.2) rotate(8deg);
+                    box-shadow: 0px 10px 25px #00000096
+                }
+            }
+        }
+    }
+.footer-block{
+    padding: 2rem 0 3rem;;
+    border-top: 1px solid gray;
+    display: inline-block;
+}
+.footer-text{
+    color: $color-light-gray;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.row{  
+    max-width: 117rem; 
+    margin: 0 auto;
+        [class^="col-"]{
+            float:left;
+
+        &:not(:last-child){
+            margin-right:#{$gutter-width}; 
+        }
+            }
+        .col-1-of-2{
+           width: calc((100% - #{$gutter-width})/2);
+        //    @include bg(green,white); 
+        //    @include animation-execution();
+        }
+        .col-1-of-3{
+            width: calc((100% - #{$gutter-width}*2)/3);
+            // @include bg(black,cyan);
+            // @include animation-execution();
+        }
+        .col-1-of-4{
+            width: calc((100% - #{$gutter-width}*3)/4);
+            // @include bg(skyblue,red); 
+            // @include animation-execution();
+        }  
+        .col-2-of-3{
+            width: calc((((100% - (#{$gutter-width})*2)/3)*2) + #{$gutter-width});
+            // @include bg(skyblue,red);
+            // @include animation-execution();
+        }
+        .col-2-of-4{
+            width: calc((((100% - #{$gutter-width}*3)/4)*2) + #{$gutter-width});
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-3-of-4{
+            width: calc((((100% - #{$gutter-width}*3)/4)*3) + #{$gutter-width}*2);
+            // @include bg(black,cyan); 
+            // @include animation-execution();
+        }
+        .col-1-of-5{
+            width: calc((100% - #{$gutter-width}*4)/5);
+            // @include bg(pink,purple); 
+            // @include animation-execution();
+        }
+        .col-2-of-5{
+            width: calc(((100% - #{$gutter-width}*4)/5)*2 + #{$gutter-width});
+            // @include bg( blue,yellow);
+            // @include animation-execution();
+        }
+        .col-3-of-5{
+            width: calc((((100% - #{$gutter-width}*4)/5)*3) + #{$gutter-width}*2);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-5{
+            width: calc((((100% - #{$gutter-width}*4)/5)*4) + #{$gutter-width}*3);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-1-of-6{
+            width:calc((100% - #{$gutter-width}*5)/6);
+            // @include bg(red,white); 
+            // @include animation-execution(); 
+        }
+        .col-2-of-6{
+            width: calc(((100% - #{$gutter-width}*5)/6)*2 + #{$gutter-width});
+            // @include bg(maroon,white); 
+            // @include animation-execution();
+        }
+        .col-3-of-6{
+            width: calc((((100% - #{$gutter-width}*5)/6)*3) + #{$gutter-width}*2);
+            // @include bg(yellow,black); 
+            // @include animation-execution();
+        }
+        .col-4-of-6{
+            width: calc((((100% - #{$gutter-width}*5)/6)*4) + #{$gutter-width}*3);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-6{
+            width: calc((((100% - #{$gutter-width}*5)/6)*5) + #{$gutter-width}*4);
+            //   @include bg(crimson,lightyellow); 
+            //   @include animation-execution();
+        }
+        .col-1-of-7{
+            width:calc((100% - #{$gutter-width}*6)/7);
+            // @include bg(purple,lightyellow);
+            // @include animation-execution();
+        }
+        .col-2-of-7{
+            width: calc(((100% - #{$gutter-width}*6)/7)*2 + #{$gutter-width});
+            // @include bg(maroon,white); 
+            // @include animation-execution();
+        }
+        .col-3-of-7{
+            width: calc(((100% - #{$gutter-width}*6)/7)*3 + #{$gutter-width}*2);
+            // @include bg(blue,green); 
+            // @include animation-execution();
+        }
+        .col-4-of-7{
+            width: calc(((100% - #{$gutter-width}*6)/7)*4 + #{$gutter-width}*3);
+            // @include bg(black,green); 
+            // @include animation-execution();
+        }
+        .col-5-of-7{
+            width: calc(((100% - #{$gutter-width}*6)/7)*5 + #{$gutter-width}*4);
+            // @include bg(pink,green); 
+            // @include animation-execution();
+        }
+        .col-6-of-7{
+            width: calc(((100% - #{$gutter-width}*6)/7)*5 + #{$gutter-width}*4);
+            // @include bg(yellow,black); 
+            // @include animation-execution();
+        }
+        .col-1-of-8{
+            width:calc((100% - #{$gutter-width}*7)/8);
+            // @include bg(orange,black); 
+            // @include animation-execution();
+        }
+        .col-2-of-8{
+            width: calc(((100% - #{$gutter-width}*7)/8)*2 + #{$gutter-width});
+            // @include bg(maroon,white); 
+            // @include animation-execution();
+        }
+        .col-3-of-8{
+            width: calc(((100% - #{$gutter-width}*7)/8)*3 + #{$gutter-width}*2);
+            // @include bg(cyan,purple); 
+            // @include animation-execution();
+        }
+        .col-5-of-8{
+            width: calc(((100% - #{$gutter-width}*7)/8)*5 + #{$gutter-width}*4);
+            // @include bg(rgb(187, 255, 0),purple); 
+            // @include animation-execution();
+        }
+        .col-6-of-8{
+            width: calc(((100% - #{$gutter-width}*7)/8)*6 + #{$gutter-width}*5);
+            // @include bg(green,purple); 
+            // @include animation-execution();
+        }
+        .col-7-of-8{
+            width: calc(((100% - #{$gutter-width}*7)/8)*7 + #{$gutter-width}*6);
+            // @include bg(red,purple); 
+            // @include animation-execution();
+        }
+        .col-1-of-9{
+            width:calc((100% - #{$gutter-width}*8)/9);
+            // @include bg(hotpink,black); 
+            // @include animation-execution();
+        }
+        .col-2-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*2 + #{$gutter-width});
+            // @include bg(green,purple); 
+            // @include animation-execution();
+        }
+        .col-3-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*3 + #{$gutter-width}*2);
+            // @include bg(salmon,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*4 + #{$gutter-width}*3);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*5 + #{$gutter-width}*4);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-6-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*6 + #{$gutter-width}*5);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-7-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*7 + #{$gutter-width}*6);
+            // @include bg(blue,white); 
+            // @include animation-execution();
+        }
+        .col-8-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*8 + #{$gutter-width}*7);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-1-of-10{
+            width:calc((100% - #{$gutter-width}*9)/10);
+            // @include bg(lightgreen,black); 
+            // @include animation-execution();
+        }
+        .col-2-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*2 + #{$gutter-width});
+            // @include bg(green,purple); 
+            // @include animation-execution();
+        }
+        .col-3-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*3 + #{$gutter-width}*2);
+            // @include bg(salmon,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*4 + #{$gutter-width}*3);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*5 + #{$gutter-width}*4);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-6-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*6 + #{$gutter-width}*5);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-7-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*7 + #{$gutter-width}*6);
+            // @include bg(blue,white); 
+            // @include animation-execution();
+        }
+        .col-8-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*8 + #{$gutter-width}*7);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-9-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*9 + #{$gutter-width}*8);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-1-of-9{
+            width:calc((100% - #{$gutter-width}*8)/9);
+            // @include bg(hotpink,black); 
+            // @include animation-execution();
+        }
+        .col-2-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*2 + #{$gutter-width});
+            // @include bg(green,purple); 
+            // @include animation-execution();
+        }
+        .col-3-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*3 + #{$gutter-width}*2);
+            // @include bg(salmon,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*4 + #{$gutter-width}*3);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*5 + #{$gutter-width}*4);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-6-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*6 + #{$gutter-width}*5);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-7-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*7 + #{$gutter-width}*6);
+            // @include bg(blue,white); 
+            // @include animation-execution();
+        }
+        .col-8-of-9{
+            width: calc(((100% - #{$gutter-width}*8)/9)*8 + #{$gutter-width}*7);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-1-of-10{
+            width:calc((100% - #{$gutter-width}*9)/10);
+            // @include bg(lightgreen,black); 
+            // @include animation-execution();
+        }
+        .col-2-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*2 + #{$gutter-width});
+            // @include bg(rgb(180, 156, 199),purple); 
+            // @include animation-execution();
+        }
+        .col-3-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*3 + #{$gutter-width}*2);
+            // @include bg(salmon,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*4 + #{$gutter-width}*3);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*5 + #{$gutter-width}*4);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-6-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*6 + #{$gutter-width}*5);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-7-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*7 + #{$gutter-width}*6);
+            // @include bg(blue,white); 
+            // @include animation-execution();
+        }
+        .col-8-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*8 + #{$gutter-width}*7);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-9-of-10{
+            width: calc(((100% - #{$gutter-width}*9)/10)*9 + #{$gutter-width}*8);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-1-of-11{
+            width:calc((100% - #{$gutter-width}*10)/11);
+            // @include bg(darkorange,black); 
+            // @include animation-execution();
+        }
+        .col-2-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*2 + #{$gutter-width});
+            // @include bg(green,purple); 
+            // @include animation-execution();
+        }
+        .col-3-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*3 + #{$gutter-width}*2);
+            // @include bg(salmon,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*4 + #{$gutter-width}*3);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*5 + #{$gutter-width}*4);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-6-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*6 + #{$gutter-width}*5);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-7-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*7 + #{$gutter-width}*6);
+            // @include bg(blue,white); 
+            // @include animation-execution();
+        }
+        .col-8-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*8 + #{$gutter-width}*7);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+        .col-9-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*9 + #{$gutter-width}*8);
+            // @include bg(cyan,white); 
+            // @include animation-execution();
+        }
+        .col-10-of-11{
+            width: calc(((100% - #{$gutter-width}*10)/11)*10 + #{$gutter-width}*9);
+            // @include bg(maroon,white); 
+            // @include animation-execution();
+        }
+        .col-1-of-12{
+            width:calc((100% - #{$gutter-width}*11)/12);
+            // @include bg(darkgrey,darkblue); 
+            // @include animation-execution();
+        }
+        .col-2-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*2 + #{$gutter-width});
+            // @include bg(green,purple); 
+            // @include animation-execution();
+        }
+        .col-3-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*3 + #{$gutter-width}*2);
+            // @include bg(salmon,white); 
+            // @include animation-execution();
+        }
+        .col-4-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*4 + #{$gutter-width}*3);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-5-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*5 + #{$gutter-width}*4);
+            // @include bg(rgb(255, 51, 0),white); 
+            // @include animation-execution();
+        }
+        .col-6-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*6 + #{$gutter-width}*5);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-7-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*7 + #{$gutter-width}*6);
+            // @include bg(blue,white); 
+            // @include animation-execution();
+        }
+        .col-8-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*8 + #{$gutter-width}*7);
+            // @include bg(green,white); 
+            // @include animation-execution();
+        }
+        .col-9-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*9 + #{$gutter-width}*8);
+            // @include bg(yellow,white); 
+            // @include animation-execution();
+        }
+        .col-10-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*10 + #{$gutter-width}*9);
+            // @include bg(pink,white); 
+            // @include animation-execution();
+        }
+        .col-11-of-12{
+            width: calc(((100% - #{$gutter-width}*11)/12)*11 + #{$gutter-width}*10);
+            // @include bg(red,white); 
+            // @include animation-execution();
+        }
+    &:not(:last-child){
+        margin-bottom: 6rem;
+    }
+    @include clearfix();
+}
+
+
+
+
